@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 
 export class Movie extends Component {
   state = {
-    title: '',
-    poster: '',
-    overview: ''
+    movies: []
   }
 
   componentDidMount() {
@@ -17,24 +15,32 @@ export class Movie extends Component {
 
       .then(data => {
         console.log(data)
-          this.setState({
-          title: {data.page}
-          })
-            })
-  // updateState = () => {
-  //   })
-  // }
+        this.setState({
+          movies: data.results
+        })
+      })
+  }
 
   render() {
     return (
       <div>
         <ul>
-          <li>{this.state.title}</li>
-          <li>{this.state.poster}</li>
-          <li>{this.state.overview}</li>
+          {this.state.movies.map(movie => {
+            return <li> {movie.title} </li>
+          })}
+
+          {this.state.movies.map(movie => {
+            return (
+              <img
+                src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${
+                  movie['poster_path']
+                }`}
+              />
+            )
+          })}
         </ul>
       </div>
-      )
-    }
+    )
   }
+}
 export default Movie
