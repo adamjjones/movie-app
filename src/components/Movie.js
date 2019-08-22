@@ -23,19 +23,20 @@ export class Movie extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <ul>
           {this.state.movies.map(movie => {
-            return <li> {movie.title} </li>
-          })}
+            const picserver = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2'
+            const url1 = picserver + movie.poster_path
+            const url2 = picserver + movie.backdrop_path
 
-          {this.state.movies.map(movie => {
             return (
-              <img
-                src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${
-                  movie['poster_path']
-                }`}
-              />
+              <div>
+                <img src={url1} />
+                <img src={url2} />
+                <li> {movie.title} </li>
+                <li>{movie.overview}</li>
+              </div>
             )
           })}
         </ul>
