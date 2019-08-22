@@ -31,12 +31,15 @@ export class Movie extends Component {
             const url2 = picserver + movie.backdrop_path
 
             return (
-              <div>
-                <img src={url1} />
-                <img src={url2} />
-                <li> {movie.title} </li>
-                <li>{movie.overview}</li>
-              </div>
+              <section idName="content">
+                <div className="images">
+                  <img src={url1} />
+                  <img src={url2} />
+                </div>
+
+                <li className="title"> {movie.title} </li>
+                <li className="overview">{movie.overview}</li>
+              </section>
             )
           })}
         </ul>
